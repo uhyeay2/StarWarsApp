@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StarWarsApp.Domain\StarWarsApp.Domain.csproj" />
+    <ProjectReference Include="..\StarWarsApp.ExternalService.StarWarsApi\StarWarsApp.ExternalService.StarWarsApi.csproj" />
+  </ItemGroup>
+
+</Project>

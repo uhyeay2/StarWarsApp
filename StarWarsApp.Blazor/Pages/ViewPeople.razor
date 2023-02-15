@@ -1,0 +1,51 @@
+﻿@page "/viewPeople"
+
+<PageTitle>Viewing People</PageTitle>
+
+@using StarWarsApp.Domain.Interfaces;
+@using StarWarsApp.Domain.Models;
+@inject ISWApiServiceRouter Router;
+
+<h3>Viewing People</h3>
+
+@if (_people == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date Of Birth</th>
+                    <th>Home World</th>
+                    <th>Gender</th>
+                    <th>Eye Color</th>
+                    <th>Hair Color</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var person in _people)
+            {
+                        <tr>
+                            <td>@person.Name</td>
+                            <td>@person.DateOfBirth</td>
+                            <td>@person.HomeWorld</td>
+                            <td>@person.Gender</td>
+                            <td>@person.EyeColor</td>
+                            <td>@person.HairColor</td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
+
+@code {
+    private IEnumerable<Person>? _people = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _people = await Router.GetAllPeopleAsync();
+    }
+}
