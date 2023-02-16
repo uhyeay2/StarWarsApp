@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using StarWarsApp.ExternalService.StarWarsApi.ServiceRouter;
 
 namespace StarWarsApp.ExternalService.StarWarsApi.DependencyInjection
 {
@@ -11,7 +12,7 @@ namespace StarWarsApp.ExternalService.StarWarsApi.DependencyInjection
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services.AddScoped<ISWApiServiceRouter, ServiceRouter.SWApiServiceRouter>();
+            services.AddScoped<ISWApiServiceRouter, SWApiServiceRouter>();
 
             return services;
         }

@@ -1,46 +1,32 @@
-﻿using StarWarsApp.ExternalService.StarWarsApi.Services;
-
-namespace StarWarsApp.ExternalService.StarWarsApi.ServiceRouter
+﻿namespace StarWarsApp.ExternalService.StarWarsApi.ServiceRouter
 {
     internal class SWApiServiceCollection
     {
         private readonly Dictionary<Type, object> _services;
 
-        public SWApiServiceCollection()
+        public SWApiServiceCollection(params SWApiServiceRequestContainer[] services)
         {
-            var peopleService = new SWApiPeopleService();
-            var filmService = new SWApiFilmService();
-            var planetService = new SWApiPlanetService();
-            var speciesService = new SWApiSpeciesService();
-            var starshipService = new SWApiStarshipService();
-            var vehicleService = new SWApiVehicleService();
+            _services = new();
 
-            _services = new()
+            foreach (var service in services)
             {
-                {typeof(GetAllPeopleRequest), peopleService },
-                {typeof(GetPeopleByNameRequest), peopleService },
-                {typeof(GetPersonByIdRequest), peopleService },
+                AddService(service);
+            }
+        }
 
-                {typeof(GetAllFilmsRequest), filmService },
-                {typeof(GetFilmsByTitleRequest), filmService },
-                {typeof(GetFilmByIdRequest), filmService },
+        public SWApiServiceCollection() : this( SWApiServiceRequestContainer.AllContainers ) { }
 
-                {typeof(GetAllPlanetsRequest), planetService },
-                {typeof(GetPlanetsByNameRequest), planetService },
-                {typeof(GetPlanetByIdRequest), planetService },
+        private void AddService(SWApiServiceRequestContainer service)
+        {
+            if(service == null) throw new ArgumentNullException(nameof(service));
 
-                {typeof(GetAllSpeciesRequest), speciesService },
-                {typeof(GetSpeciesByNameRequest), speciesService },
-                {typeof(GetSpeciesByIdRequest), speciesService },
-
-                {typeof(GetAllStarshipsRequest), starshipService },
-                {typeof(GetStarshipsByNameRequest), starshipService },
-                {typeof(GetStarshipByIdRequest), starshipService },
-
-                {typeof(GetAllVehicleRequest), vehicleService },
-                {typeof(GetVehiclesByNameRequest), vehicleService },
-                {typeof(GetVehicleByIdRequest), vehicleService },
-            };
+            if (service.Requests.Any())
+            {
+                foreach (var request in service.Requests)
+                {
+                    _services.TryAdd(request, service.Implementation);
+                }
+            }
         }
 
         public async Task<TResponse> CallService<TRequest, TResponse>(TRequest request) where TRequest : SWApiRequest<TResponse>

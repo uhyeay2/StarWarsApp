@@ -7,7 +7,7 @@
         [Fact]
         public async Task GetAllVehicles_Should_NotReturn_EmptyCollection()
         {
-            var result = await _service.GetResponseAsync(new GetAllVehicleRequest());
+            var result = await _service.GetResponseAsync(new GetAllVehiclesRequest());
 
             Assert.NotEmpty(result);
         }
