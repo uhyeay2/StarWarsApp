@@ -1,33 +1,16 @@
 ﻿namespace StarWarsApp.ExternalService.StarWarsApi.Services
 {
-    internal class GetAllPeopleRequest : ExternalServiceRequest<IEnumerable<Person>> { }
-
-    internal class SWApiPeopleService : BaseSWApiService, IExternalService<GetAllPeopleRequest, IEnumerable<Person>>
+    internal class SWApiPeopleService : BaseSWApiService,
+        ISWApiService<GetAllPeopleRequest, IEnumerable<SWApiPerson>>,
+        ISWApiService<GetPeopleByNameRequest, IEnumerable<SWApiPerson>>,
+        ISWApiService<GetPersonByIdRequest, SWApiPerson?>
     {
-        protected const string PeopleUrl = StarWarsApiBaseUrl + "people/";
+        private const string _peopleUrl = StarWarsApiBaseUrl + "people/";
 
-        public async Task<IEnumerable<Person>> GetResponseAsync(GetAllPeopleRequest request) => await GetPeople(PeopleUrl);
+        public async Task<IEnumerable<SWApiPerson>> GetResponseAsync(GetAllPeopleRequest request) => await GetContentFromAllPagesAsync<SWApiPerson>(_peopleUrl);
 
-        protected async Task<IEnumerable<Person>> GetPeople(string url, List<Person>? people = null)
-        {
-            people ??= new();
+        public async Task<IEnumerable<SWApiPerson>> GetResponseAsync(GetPeopleByNameRequest request) => await GetContentFromAllPagesAsync<SWApiPerson>(_peopleUrl + SearchParameter(request.Name));
 
-            var response = await GetContentOrDefault<SWApiPeopleResponse>(url);
-
-            if (response?.results?.Length > 0)
-            {
-                foreach (var swApiPerson in response.results)
-                {
-                    people.Add(swApiPerson.ParsePerson());
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(response?.next))
-            {
-                await GetPeople(response.next, people);
-            }
-
-            return people;
-        }
+        public async Task<SWApiPerson?> GetResponseAsync(GetPersonByIdRequest request) => await GetContentOrDefaultAsync<SWApiPerson>(_peopleUrl + request.Id);
     }
 }

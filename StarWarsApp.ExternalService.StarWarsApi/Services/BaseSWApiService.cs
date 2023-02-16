@@ -8,11 +8,35 @@ namespace StarWarsApp.ExternalService.StarWarsApi.Services
 
         protected static HttpClient NewClient() => HttpClientFactory.Create();
 
-        protected static async Task<TOutput?> GetContentOrDefault<TOutput>(string url)
+        protected static string SearchParameter(string input) => $"?search={input}";
+
+        protected static async Task<TOutput?> GetContentOrDefaultAsync<TOutput>(string url)
         {
             using var client = NewClient();
 
             return await DeserializeResponseAsync<TOutput?>(await client.GetAsync(url));
+        }
+
+        protected async Task<IEnumerable<TOutput>> GetContentFromAllPagesAsync<TOutput>(string url, List<TOutput>? results = null)
+        {
+            results ??= new();
+
+            var response = await GetContentOrDefaultAsync<SWApiPagedResponse<TOutput>>(url);
+
+            if (response?.results?.Length > 0)
+            {
+                foreach (var item in response.results)
+                {
+                    results.Add(item);
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(response?.next))
+            {
+                await GetContentFromAllPagesAsync(response.next, results);
+            }
+
+            return results;
         }
 
         private static async Task<TOutput?> DeserializeResponseAsync<TOutput>(HttpResponseMessage response)

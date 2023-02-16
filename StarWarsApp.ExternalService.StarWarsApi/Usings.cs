@@ -1,5 +1,7 @@
 ﻿
+global using StarWarsApp.ExternalService.StarWarsApi.Interfaces;
+global using StarWarsApp.ExternalService.StarWarsApi.Requests;
 global using StarWarsApp.ExternalService.StarWarsApi.Responses;
 
-global using StarWarsApp.Domain.Interfaces;
-global using StarWarsApp.Domain.Models;
+using System.Runtime.CompilerServices;
+[assembly:InternalsVisibleTo("StarWarsApp.ExternalService.StarWarsApi.Tests")]

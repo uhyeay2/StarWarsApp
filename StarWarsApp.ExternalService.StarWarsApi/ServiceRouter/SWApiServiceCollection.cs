@@ -8,20 +8,47 @@ namespace StarWarsApp.ExternalService.StarWarsApi.ServiceRouter
 
         public SWApiServiceCollection()
         {
+            var peopleService = new SWApiPeopleService();
+            var filmService = new SWApiFilmService();
+            var planetService = new SWApiPlanetService();
+            var speciesService = new SWApiSpeciesService();
+            var starshipService = new SWApiStarshipService();
+            var vehicleService = new SWApiVehicleService();
+
             _services = new()
             {
-                {typeof(GetAllPeopleRequest), new SWApiPeopleService() },
-                {typeof(GetPeopleByNameRequest), new SWApiPeopleNameSearchService() },
-                {typeof(GetPersonByIdRequest), new SWApiPeopleIdSearchService() }
+                {typeof(GetAllPeopleRequest), peopleService },
+                {typeof(GetPeopleByNameRequest), peopleService },
+                {typeof(GetPersonByIdRequest), peopleService },
+
+                {typeof(GetAllFilmsRequest), filmService },
+                {typeof(GetFilmsByTitleRequest), filmService },
+                {typeof(GetFilmByIdRequest), filmService },
+
+                {typeof(GetAllPlanetsRequest), planetService },
+                {typeof(GetPlanetsByNameRequest), planetService },
+                {typeof(GetPlanetByIdRequest), planetService },
+
+                {typeof(GetAllSpeciesRequest), speciesService },
+                {typeof(GetSpeciesByNameRequest), speciesService },
+                {typeof(GetSpeciesByIdRequest), speciesService },
+
+                {typeof(GetAllStarshipsRequest), starshipService },
+                {typeof(GetStarshipsByNameRequest), starshipService },
+                {typeof(GetStarshipByIdRequest), starshipService },
+
+                {typeof(GetAllVehicleRequest), vehicleService },
+                {typeof(GetVehiclesByNameRequest), vehicleService },
+                {typeof(GetVehicleByIdRequest), vehicleService },
             };
         }
 
-        public async Task<TResponse> CallService<TRequest, TResponse>(TRequest request) where TRequest : ExternalServiceRequest<TResponse>
+        public async Task<TResponse> CallService<TRequest, TResponse>(TRequest request) where TRequest : SWApiRequest<TResponse>
         {
             var service = _services.TryGetValue(request.GetType(), out var serviceInstance)
                                                ? serviceInstance : throw new ApplicationException($"No service registered for {nameof(request)}");
 
-            if (service is IExternalService<TRequest, TResponse> matchedService)
+            if (service is ISWApiService<TRequest, TResponse> matchedService)
             {
                 return await matchedService.GetResponseAsync(request);
             }
