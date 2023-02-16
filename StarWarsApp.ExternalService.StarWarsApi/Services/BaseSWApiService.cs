@@ -21,7 +21,7 @@ namespace StarWarsApp.ExternalService.StarWarsApi.Services
         {
             results ??= new();
 
-            var response = await GetContentOrDefaultAsync<SWApiPagedResponse<TOutput>>(url);
+            var response = await GetContentOrDefaultAsync<PagedResponse<TOutput>>(url);
 
             if (response?.results?.Length > 0)
             {

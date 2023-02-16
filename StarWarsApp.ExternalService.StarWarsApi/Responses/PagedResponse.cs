@@ -1,6 +1,6 @@
 ﻿namespace StarWarsApp.ExternalService.StarWarsApi.Responses
 {
-    internal class SWApiPagedResponse<TResults>
+    internal class PagedResponse<TResults>
     {
         public int count { get; set; }
 
