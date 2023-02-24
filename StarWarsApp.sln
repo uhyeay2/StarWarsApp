@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsApp.Domain", "StarWarsApp.Domain\StarWarsApp.Domain.csproj", "{1930955F-3B67-4C5A-9B1C-139BC9D5B1AD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsApp.ExternalService.StarWarsApi", "StarWarsApp.ExternalService.StarWarsApi\StarWarsApp.ExternalService.StarWarsApi.csproj", "{23546D0A-4903-4D46-B6BF-7776951DB308}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsApp.Blazor", "StarWarsApp.Blazor\StarWarsApp.Blazor.csproj", "{285CA21D-6E61-427E-8E82-8682C6C82AAF}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1930955F-3B67-4C5A-9B1C-139BC9D5B1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1930955F-3B67-4C5A-9B1C-139BC9D5B1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1930955F-3B67-4C5A-9B1C-139BC9D5B1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1930955F-3B67-4C5A-9B1C-139BC9D5B1AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23546D0A-4903-4D46-B6BF-7776951DB308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23546D0A-4903-4D46-B6BF-7776951DB308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23546D0A-4903-4D46-B6BF-7776951DB308}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,7 +36,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1930955F-3B67-4C5A-9B1C-139BC9D5B1AD} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
 		{23546D0A-4903-4D46-B6BF-7776951DB308} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
 		{285CA21D-6E61-427E-8E82-8682C6C82AAF} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
 		{1DFF030B-571A-43BB-B5DD-C5640D8A2036} = {CF1A2004-9154-45A3-B22A-50C194B75391}

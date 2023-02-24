@@ -2,13 +2,15 @@
 
 <PageTitle>Viewing People</PageTitle>
 
-@using StarWarsApp.Domain.Models;
+@using StarWarsApp.ExternalService.StarWarsApi.Interfaces;
+@using StarWarsApp.ExternalService.StarWarsApi.Responses;
+@inject ISWApiServiceRouter Router;
 
 <h3>Viewing People</h3>
 
 @if (_people == null)
 {
-        <p><em>Front End Being Developed</em></p>
+        <p><em>Fetching People - Please wait one moment!</em></p>
 }
 else
 {
@@ -26,11 +28,11 @@ else
                 @foreach (var person in _people)
                 {
                     <tr>
-                        <td>@person.Name</td>
-                        <td>@person.DateOfBirth</td>
-                        <td>@person.Gender</td>
-                        <td>@person.EyeColor</td>
-                        <td>@person.HairColor</td>
+                        <td>@person.name</td>
+                        <td>@person.birth_year</td>
+                        <td>@person.gender</td>
+                        <td>@person.eye_color</td>
+                        <td>@person.hair_color</td>
                     </tr>
                 }
             </tbody>
@@ -38,5 +40,12 @@ else
 }
 
 @code {
-    private IEnumerable<Person>? _people = null;
+
+    private IEnumerable<SWApiPerson>? _people = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _people = await Router.GetAllPeopleAsync();
+    }
+
 }

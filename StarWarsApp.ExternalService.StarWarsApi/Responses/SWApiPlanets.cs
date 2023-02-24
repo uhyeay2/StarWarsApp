@@ -2,7 +2,7 @@
 {
     public class SWApiPlanet
     {
-        public string? name { get; set; }
+        public string name { get; set; } = null!;
 
         public string? rotation_period { get; set; }
 

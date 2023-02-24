@@ -14,7 +14,7 @@
             }
         }
 
-        public SWApiServiceCollection() : this( SWApiServiceRequestContainer.AllContainers ) { }
+        public SWApiServiceCollection() : this( SWApiServiceRequestContainer.ImplementedServices ) { }
 
         private void AddService(SWApiServiceRequestContainer service)
         {
