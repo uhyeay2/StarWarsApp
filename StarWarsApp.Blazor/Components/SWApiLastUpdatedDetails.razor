@@ -1,0 +1,7 @@
+﻿@inject ISWApiOrchestrator StarWarsApiOrchestrator;
+
+<div>
+    <p>Data on this page is fetched every 30s using StarWarsApi</p>
+    <p>Last Updated : @StarWarsApiOrchestrator.GetLastUpdateDateTimeUTC() (UTC)</p>
+    <p>Refresh Count: @StarWarsApiOrchestrator.GetRefreshCount()</p>
+</div>

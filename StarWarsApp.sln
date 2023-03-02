@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CF1A2004
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWarsApp.ExternalService.StarWarsApi.Tests", "StarWarsApp.ExternalService.StarWarsApi.Tests\StarWarsApp.ExternalService.StarWarsApi.Tests.csproj", "{1DFF030B-571A-43BB-B5DD-C5640D8A2036}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsApp.Services", "StarWarsApp.Services\StarWarsApp.Services.csproj", "{2341A195-09B1-4C75-AFAB-087776BE4A20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsApp.Domain", "StarWarsApp.Domain\StarWarsApp.Domain.csproj", "{1B905F3F-973E-4F4E-81D9-A8B5B6446C4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{1DFF030B-571A-43BB-B5DD-C5640D8A2036}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DFF030B-571A-43BB-B5DD-C5640D8A2036}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DFF030B-571A-43BB-B5DD-C5640D8A2036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2341A195-09B1-4C75-AFAB-087776BE4A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2341A195-09B1-4C75-AFAB-087776BE4A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2341A195-09B1-4C75-AFAB-087776BE4A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2341A195-09B1-4C75-AFAB-087776BE4A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B905F3F-973E-4F4E-81D9-A8B5B6446C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B905F3F-973E-4F4E-81D9-A8B5B6446C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B905F3F-973E-4F4E-81D9-A8B5B6446C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B905F3F-973E-4F4E-81D9-A8B5B6446C4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +51,8 @@ Global
 		{23546D0A-4903-4D46-B6BF-7776951DB308} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
 		{285CA21D-6E61-427E-8E82-8682C6C82AAF} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
 		{1DFF030B-571A-43BB-B5DD-C5640D8A2036} = {CF1A2004-9154-45A3-B22A-50C194B75391}
+		{2341A195-09B1-4C75-AFAB-087776BE4A20} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
+		{1B905F3F-973E-4F4E-81D9-A8B5B6446C4D} = {8E7F6CC8-5B9E-404C-A9DB-03A4FF6EE417}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6E1373F-73E2-4625-8727-B54BCD48389E}

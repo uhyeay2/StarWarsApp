@@ -28,6 +28,6 @@
 
         public DateTime edited { get; set; }
 
-        public string? url { get; set; }
+        public string url { get; set; } = null!;
     }
 }

@@ -1,0 +1,35 @@
+﻿@page "/viewPeople"
+@inject ISWApiPersonService PersonService;
+
+<PageTitle>Viewing All People</PageTitle>
+
+<h3>Viewing All People</h3>
+
+<StarWarsApp.Blazor.Components.SWApiLastUpdatedDetails />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date Of Birth</th>
+            <th>HomeWorld</th>
+            <th>Gender</th>
+            <th>Eye Color</th>
+            <th>Hair Color</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in PersonService.GetAllPeople())
+        {
+            <tr> 
+                <td><a href="/viewPerson/@person.StarWarsApiId">@person.Name</a></td>
+                <td>@person.Birthday</td>
+                <td>@person.HomeWorld?.Name</td>
+                <td>@person.Gender</td>
+                <td>@person.EyeColor</td>
+                <td>@person.HairColor</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -12,7 +12,7 @@ namespace StarWarsApp.ExternalService.StarWarsApi.DependencyInjection
                 throw new ArgumentNullException(nameof(services));
             }
 
-            services.AddScoped<ISWApiServiceRouter, SWApiServiceRouter>();
+            services.AddSingleton<ISWApiServiceRouter, SWApiServiceRouter>();
 
             return services;
         }

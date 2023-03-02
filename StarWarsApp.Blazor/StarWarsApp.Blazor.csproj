@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StarWarsApp.ExternalService.StarWarsApi\StarWarsApp.ExternalService.StarWarsApi.csproj" />
+    <ProjectReference Include="..\StarWarsApp.Services\StarWarsApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

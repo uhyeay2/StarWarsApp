@@ -1,0 +1,68 @@
+﻿@page "/viewPerson/{id}"
+@inject ISWApiPersonService PersonService;
+@inject NavigationManager NavManager;
+
+@if(_person == null)
+{    
+    <PageTitle>Fetching Person From StarWarsApi</PageTitle>
+    <p>Please wait - Fetching data from StarWarsApi!</p>
+}
+else
+{    
+    <PageTitle>Viewing Person: @_person.Name</PageTitle>
+    <h2>@_person.Name</h2>
+
+    <p>This data was fetched in real time using StarWarsApi</p>
+
+    <h3>Details</h3>
+
+    <ul>
+        <li>Birthday: @_person.Birthday</li>
+        <li>Gender: @_person.Gender</li>
+        <li>Eye Color: @_person.EyeColor</li>
+        <li>Hair Color: @_person.HairColor</li>
+
+        @if(_person.HomeWorld != null && !_person.HomeWorld!.Name.Equals("Unknown", StringComparison.OrdinalIgnoreCase))
+        {
+        <li>Home Planet: @_person.HomeWorld.Name
+            <ul>
+                <li>Rotation Period: @_person.HomeWorld.RotationPeriod</li>
+                <li>Orbital Period: @_person.HomeWorld.OrbitalPeriod</li>
+                <li>Climate: @_person.HomeWorld.Climate</li>
+                <li>Gravity: @_person.HomeWorld.Gravity</li>
+                <li>Terrain: @_person.HomeWorld.Terrain</li>
+                <li>Surface Water: @_person.HomeWorld.SurfaceWater</li>
+                <li>Population: @_person.HomeWorld.Population</li>
+            </ul>
+        </li>
+        }
+        else
+        {
+        <li>Home Planet: Unknown</li>
+        }
+    </ul>
+}
+
+@code
+{
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Person? _person;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(!string.IsNullOrWhiteSpace(Id) && int.TryParse(Id, out var id))
+        {
+            _person = await PersonService.GetPersonByIdAsync(id);
+            if(_person == null)
+            {
+                NavManager.NavigateTo("Error", true);
+            }
+        }
+        else
+        {
+            NavManager.NavigateTo("Error", true);
+        }
+    }
+}

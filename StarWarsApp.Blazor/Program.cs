@@ -1,4 +1,4 @@
-using StarWarsApp.ExternalService.StarWarsApi.DependencyInjection;
+using StarWarsApp.Services.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,9 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.InjectStarWarsApiService();
+builder.Services.InjectServices();
 
 var app = builder.Build();
+
+app.Services.GetRequiredService<ISWApiOrchestrator>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
