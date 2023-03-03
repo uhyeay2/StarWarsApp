@@ -14,6 +14,14 @@ namespace StarWarsApp.Services.StarWarsApi.Services
             _modelBuilder = modelBuilder;
         }
 
-        public IEnumerable<Planet> GetAllPlanets() => _orchestrator.GetAllPlanets().Select(_modelBuilder.Build);       
+        public IEnumerable<Planet> GetAllPlanets() => _orchestrator.GetAllPlanets().Select(_modelBuilder.Build);
+
+        public async Task<Planet?> GetPlanetByIdAsync(int id)
+        {
+            var planet = await _router.GetPlanetByIdAsync(id);
+
+            return planet == null ? null : _modelBuilder.Build(planet);
+        }
+            
     }
 }

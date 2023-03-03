@@ -1,0 +1,52 @@
+﻿@page "/viewPlanet/{id}"
+@inject ISWApiPlanetService PlanetService;
+@inject NavigationManager NavManager;
+
+@if (_planet == null)
+{
+    <PageTitle>Fetching Planet From StarWarsApi</PageTitle>
+    <p>Please wait - Fetching data from StarWarsApi!</p>
+}
+else
+{
+    <PageTitle>Viewing Planet: @_planet.Name</PageTitle>
+    <h2>@_planet.Name</h2>
+
+    <p>This data was fetched in real time using StarWarsApi</p>
+
+    <h3>Details</h3>
+
+    <ul>
+        <li>Rotation Period: @_planet.RotationPeriod</li>
+        <li>Orbital Period: @_planet.OrbitalPeriod</li>
+        <li>Climate: @_planet.Climate</li>
+        <li>Gravity: @_planet.Gravity</li>
+        <li>Terrain: @_planet.Terrain</li>
+        <li>Surface Water: @_planet.SurfaceWater</li>
+        <li>Population: @_planet.Population</li>
+    </ul>
+}
+
+@code
+{
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Planet? _planet;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrWhiteSpace(Id) && int.TryParse(Id, out var id))
+        {
+            _planet = await PlanetService.GetPlanetByIdAsync(id);
+            if (_planet == null)
+            {
+                NavManager.NavigateTo("Error", true);
+            }
+        }
+        else
+        {
+            NavManager.NavigateTo("Error", true);
+        }
+    }
+}

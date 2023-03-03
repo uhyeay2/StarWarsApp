@@ -24,7 +24,8 @@ else
 
         @if(_person.HomeWorld != null && !_person.HomeWorld!.Name.Equals("Unknown", StringComparison.OrdinalIgnoreCase))
         {
-        <li>Home Planet: @_person.HomeWorld.Name
+            <li>
+                Home Planet: <a href="/viewPlanet/@_person.HomeWorld.StarWarsApiId">@_person.HomeWorld.Name</a>
             <ul>
                 <li>Rotation Period: @_person.HomeWorld.RotationPeriod</li>
                 <li>Orbital Period: @_person.HomeWorld.OrbitalPeriod</li>
